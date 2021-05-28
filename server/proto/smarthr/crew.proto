@@ -1,9 +1,13 @@
 syntax = "proto3";
 
-package smarthr.crews;
+package smarthr;
 
 // これつけたら動かなそう
 // import "smarthr/department.proto";
+
+service Crews {
+  rpc GetCrew(Empty) returns (Crew) {}
+}
 
 message Crew {
   enum Gender {
@@ -29,3 +33,5 @@ message Address {
   string id = 1;
   string pref = 2;
 }
+
+message Empty {}

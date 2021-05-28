@@ -5,7 +5,7 @@ require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("smarthr/crew.proto", :syntax => :proto3) do
-    add_message "smarthr.crews.Crew" do
+    add_message "smarthr.Crew" do
       optional :id, :string, 1
       optional :emp_code, :string, 2
       optional :last_name, :string, 3
@@ -20,21 +20,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :tel_number, :string, 13
       optional :email, :string, 14
     end
-    add_enum "smarthr.crews.Crew.Gender" do
+    add_enum "smarthr.Crew.Gender" do
       value :MALE, 0
       value :FEMALE, 1
     end
-    add_message "smarthr.crews.Address" do
+    add_message "smarthr.Address" do
       optional :id, :string, 1
       optional :pref, :string, 2
+    end
+    add_message "smarthr.Empty" do
     end
   end
 end
 
 module Smarthr
-  module Crews
-    Crew = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.crews.Crew").msgclass
-    Crew::Gender = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.crews.Crew.Gender").enummodule
-    Address = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.crews.Address").msgclass
-  end
+  Crew = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.Crew").msgclass
+  Crew::Gender = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.Crew.Gender").enummodule
+  Address = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.Address").msgclass
+  Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("smarthr.Empty").msgclass
 end

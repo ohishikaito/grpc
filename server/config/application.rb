@@ -25,7 +25,7 @@ module Server
     config.load_defaults 6.0
 
     # 絶対にやってはいけない設定。Zeitwerkをオフにする
-    config.autoloader = :classic
+    # config.autoloader = :classic
 
     # ActiveSupport::Dependencies.autoload_paths
     # lib配下を読ませる。どっちでもok
