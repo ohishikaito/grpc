@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package smarthr.crews;
+
+// これつけたら動かなそう
+// import "smarthr/department.proto";
+
+message Crew {
+  enum Gender {
+    MALE = 0;
+    FEMALE = 1;
+  }
+  string id = 1;
+  string emp_code = 2;
+  string last_name = 3;
+  string first_name = 4;
+  string last_name_yomi = 5;
+  string first_name_yomi = 6;
+  string business_last_name = 7;
+  string business_first_name = 8;
+  string business_last_name_yomi = 9;
+  string business_first_name_yomi = 10;
+  string birth_at = 11;
+  string tel_number = 13;
+  string email = 14;
+}
+
+message Address {
+  string id = 1;
+  string pref = 2;
+}
