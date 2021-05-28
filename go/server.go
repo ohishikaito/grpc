@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"grpc/pinger"
+	"grpc/proto/pinger"
 	"log"
 	"net"
 
@@ -18,8 +18,9 @@ func main() {
 		log.Fatalf("failed to listen: %v\n", err)
 		return
 	}
+
 	grpcServer := grpc.NewServer()
-	pinger.RegisterPingerServer(grpcServer, &server{})
+	pinger.RegisterPingerServiceServer(grpcServer, &server{})
 	fmt.Printf("pinger!!!!!!!")
 	grpcServer.Serve(listener)
 }

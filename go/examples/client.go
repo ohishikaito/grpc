@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"grpc/pinger"
+	"grpc/proto/pinger"
 	"os"
 
 	"google.golang.org/grpc"
@@ -16,7 +16,7 @@ func main() {
 		return
 	}
 	defer conn.Close()
-	client := pinger.NewPingerClient(conn)
+	client := pinger.NewPingerServiceClient(conn)
 	req := &pinger.Empty{}
 	pong, err := client.Ping(context.Background(), req)
 	if err != nil {

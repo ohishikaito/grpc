@@ -1,4 +1,4 @@
-root dirで
+<!-- root dirで
 `protoc -I ./proto pinger.proto --go_out=plugins=grpc:./pinger/lib`
 ってやってたけど、↓のerror
 
@@ -43,3 +43,17 @@ https://github.com/evilsocket/opensnitch/issues/373
 current dirが`server $`で、
 `bundle exec grpc_tools_ruby_protoc -I ../proto --ruby_out=lib --grpc_out=lib ../proto/pinger.proto`
 って叩いたら、protoファイルが生成される！
+`bundle exec grpc_tools_ruby_protoc -I ../proto --ruby_out=lib/pb --grpc_out=lib/pb ../proto/pinger.proto`
+
+またはrakeタスクを使って、
+`rake pb:protoc`でもok➡️これはsmartHRのパクリ -->
+
+root dir で、
+`protoc -I ./protofiles user.proto --go_out=plugins=grpc:./go/proto`
+で、`go/proto/user.pb.go`が作られる！
+(pingerも同様)
+
+server $ で、
+`bundle exec grpc_tools_ruby_protoc -I ../protofiles --ruby_out=lib/user/user_service --grpc_out=lib/user/user_service ../protofiles/user.proto`
+または
+`bundle exec grpc_tools_ruby_protoc -I ../protofiles --ruby_out=lib/proto --grpc_out=lib/proto ../protofiles/pinger.proto`
