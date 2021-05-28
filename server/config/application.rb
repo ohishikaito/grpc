@@ -25,12 +25,10 @@ module Server
     config.load_defaults 6.0
 
     # 絶対にやってはいけない設定。Zeitwerkをオフにする
-    # config.autoloader = :classic
+    config.autoloader = :classic
 
     # ActiveSupport::Dependencies.autoload_paths
-    # lib配下を読ませる。どっちでもok
-    config.paths.add 'lib', eager_load: true
-    config.autoload_paths << Rails.root.join("lib")
+    config.paths.add 'lib/proto', eager_load: true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
