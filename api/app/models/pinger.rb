@@ -1,0 +1,2 @@
+class Pinger < ApplicationRecord
+end
