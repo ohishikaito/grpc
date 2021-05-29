@@ -48,8 +48,8 @@ current dirが`server $`で、
 またはrakeタスクを使って、
 `rake pb:protoc`でもok➡️これはsmartHRのパクリ -->
 
-root dir で、
-`protoc -I ./protofiles user.proto --go_out=plugins=grpc:./go/proto`
+go dir で、
+`protoc -I ../api/protofiles user_proto.proto --go_out=plugins=grpc:./proto`
 で、`go/proto/user.pb.go`が作られる！
 (pingerも同様)
 

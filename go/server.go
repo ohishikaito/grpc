@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"grpc/proto/pinger"
+	"grpc/proto/user"
 	"log"
 	"net"
 
@@ -21,7 +22,8 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 	pinger.RegisterPingerServiceServer(grpcServer, &server{})
-	fmt.Printf("pinger!!!!!!!")
+	user.RegisterUserServiceServer(grpcServer, &server{})
+	fmt.Printf("pinger && user!!!!!!!")
 	grpcServer.Serve(listener)
 }
 
@@ -30,4 +32,11 @@ func (s *server) Ping(ctx context.Context, req *pinger.Empty) (*pinger.Pong, err
 		Text: "pong",
 	}
 	return pong, nil
+}
+
+func (s *server) GetUser(ctx context.Context, req *user.Empty) (*user.User, error) {
+	user := &user.User{
+		Name: "user",
+	}
+	return user, nil
 }
