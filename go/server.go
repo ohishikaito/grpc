@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"grpc/protos/pinger"
 	pb "grpc/protos/user"
 	"log"
 	"net"
@@ -28,18 +27,11 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	pinger.RegisterPingerServiceServer(grpcServer, &server{})
+	// pinger.RegisterPingerServiceServer(grpcServer, &server{})
 	pb.RegisterUserServiceServer(grpcServer, &server{})
 
 	fmt.Printf("pinger && user!!!!!!!")
 	grpcServer.Serve(listener)
-}
-
-func (s *server) Ping(ctx context.Context, req *pinger.Empty) (*pinger.Pong, error) {
-	pong := &pinger.Pong{
-		Text: "pong",
-	}
-	return pong, nil
 }
 
 // 今はpbで指定してるけど、controllerに移行したら問題なくなる
