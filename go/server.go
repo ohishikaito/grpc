@@ -38,7 +38,7 @@ func (s *server) Ping(ctx context.Context, req *pinger.Empty) (*pinger.Pong, err
 
 func (s *server) GetUser(ctx context.Context, req *user.Empty) (*user.User, error) {
 	user := &user.User{
-		Name: "user",
+		Name: "kaito",
 	}
 	return user, nil
 }

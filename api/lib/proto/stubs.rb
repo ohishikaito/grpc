@@ -13,6 +13,6 @@ module Proto
     # pingerだけpackage名がpingerになってる
     PingerStub = Pinger::PingerService::Stub.new(hostname, :this_channel_is_insecure)
 
-    UserStub = Proto::UserService::Stub.new(hostname, :this_channel_is_insecure)
+    UserStub = UserProto::UserService::Stub.new(hostname, :this_channel_is_insecure)
   end
 end
