@@ -1,12 +1,13 @@
-require 'pinger_services_pb.rb'
-require 'pinger_pb.rb'
+require 'stubs'
 
 class ApplicationController < ActionController::API
   def ping
-    name = ENV['GRPC_SERVICE_NAME']
-    port = ENV['GRPC_SERVICE_PORT']
-    pinger_stub = Pinger::PingerService::Stub.new(name + ":" + port, :this_channel_is_insecure)
-    pong = pinger_stub.ping(Pinger::Empty.new)
-    render json: {pong: pong.text}
+    # pong = Proto::Stubs::PingerStub.ping(Pinger::Empty.new)
+    # render json: { pong: pong.text }
+
+    # 仮でpingに作る
+    user = Proto::Stubs::UserStub.get_user(Proto::Empty.new)
+    render json: { user: user.name }
+    # render json: { user: user }
   end
 end

@@ -47,16 +47,3 @@ current dirが`server $`で、
 
 またはrakeタスクを使って、
 `rake pb:protoc`でもok➡️これはsmartHRのパクリ -->
-
-go dir で、
-`protoc -I ../api/protofiles user_proto.proto --go_out=plugins=grpc:./proto`
-で、`go/proto/user.pb.go`が作られる！
-(pingerも同様)
-
-server $ で、
-`bundle exec grpc_tools_ruby_protoc -I ../protofiles --ruby_out=lib/user/user_service --grpc_out=lib/user/user_service ../protofiles/user.proto`
-または
-`bundle exec grpc_tools_ruby_protoc -I ../protofiles --ruby_out=lib/proto --grpc_out=lib/proto ../protofiles/pinger.proto`
-
-railsのdocker内だと
-`bundle exec grpc_tools_ruby_protoc -I ./protofiles --ruby_out=lib/proto --grpc_out=lib/proto ./protofiles/user_proto.proto`
