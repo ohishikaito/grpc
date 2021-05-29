@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"grpc/protos/pinger"
-	"grpc/protos/user"
+	pb "grpc/protos/user"
 	"log"
 	"net"
 	"os"
@@ -29,7 +29,7 @@ func main() {
 	grpcServer := grpc.NewServer()
 
 	pinger.RegisterPingerServiceServer(grpcServer, &server{})
-	user.RegisterUserServiceServer(grpcServer, &server{})
+	pb.RegisterUserServiceServer(grpcServer, &server{})
 
 	fmt.Printf("pinger && user!!!!!!!")
 	grpcServer.Serve(listener)
@@ -42,17 +42,29 @@ func (s *server) Ping(ctx context.Context, req *pinger.Empty) (*pinger.Pong, err
 	return pong, nil
 }
 
-func (s *server) GetUsers(ctx context.Context, req *user.Empty) (*user.User, error) {
-	user := &user.User{
-		Name: "kaito",
+// 今はpbで指定してるけど、controllerに移行したら問題なくなる
+func (s *server) GetUsers(ctx context.Context, req *pb.Empty) (*pb.Users, error) {
+	var pbUsers []*pb.User
+	pbUser := &pb.User{
+		LastName:  "lastName",
+		FirstName: "firstName",
+		Email:     "email",
 	}
-	return user, nil
+	pbUsers = append(pbUsers, pbUser)
+	pbUsers = append(pbUsers, pbUser)
+	pbUsers = append(pbUsers, pbUser)
+	fmt.Println(pbUsers)
+	return &pb.Users{
+		Users: pbUsers,
+	}, nil
 }
 
-func (s *server) GetUser(ctx context.Context, req *user.GetUserReq) (*user.User, error) {
+func (s *server) GetUser(ctx context.Context, req *pb.GetUserReq) (*pb.User, error) {
 	fmt.Println(req, "req")
-	user := &user.User{
-		Name: "getUser",
+	user := &pb.User{
+		LastName:  "lastName",
+		FirstName: "firstName",
+		Email:     "email",
 	}
 	return user, nil
 }

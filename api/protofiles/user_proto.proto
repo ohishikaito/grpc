@@ -6,7 +6,7 @@ package user_proto;
 option go_package = "./user";
 
 service UserService {
-  rpc GetUsers(Empty) returns (User) {}
+  rpc GetUsers(Empty) returns (Users) {}
   rpc GetUser(GetUserReq) returns (User) {}
 }
 
@@ -17,5 +17,11 @@ message GetUserReq {
 }
 
 message User {
-  string name = 1;
+  string last_name = 1;
+  string first_name = 2;
+  string email = 3;
+}
+
+message Users {
+  repeated User users = 1;
 }

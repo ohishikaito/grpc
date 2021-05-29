@@ -11,7 +11,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :id, :int64, 1
     end
     add_message "user_proto.User" do
-      optional :name, :string, 1
+      optional :last_name, :string, 1
+      optional :first_name, :string, 2
+      optional :email, :string, 3
+    end
+    add_message "user_proto.Users" do
+      repeated :users, :message, 1, "user_proto.User"
     end
   end
 end
@@ -20,4 +25,5 @@ module UserProto
   Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("user_proto.Empty").msgclass
   GetUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("user_proto.GetUserReq").msgclass
   User = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("user_proto.User").msgclass
+  Users = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("user_proto.Users").msgclass
 end

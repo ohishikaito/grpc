@@ -116,7 +116,9 @@ type User struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	LastName  string `protobuf:"bytes,1,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	Email     string `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 }
 
 func (x *User) Reset() {
@@ -151,11 +153,72 @@ func (*User) Descriptor() ([]byte, []int) {
 	return file_user_proto_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *User) GetName() string {
+func (x *User) GetLastName() string {
 	if x != nil {
-		return x.Name
+		return x.LastName
 	}
 	return ""
+}
+
+func (x *User) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *User) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type Users struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Users []*User `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+}
+
+func (x *Users) Reset() {
+	*x = Users{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_proto_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Users) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Users) ProtoMessage() {}
+
+func (x *Users) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Users.ProtoReflect.Descriptor instead.
+func (*Users) Descriptor() ([]byte, []int) {
+	return file_user_proto_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Users) GetUsers() []*User {
+	if x != nil {
+		return x.Users
+	}
+	return nil
 }
 
 var File_user_proto_proto protoreflect.FileDescriptor
@@ -165,13 +228,20 @@ var file_user_proto_proto_rawDesc = []byte{
 	0x74, 0x6f, 0x12, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x07,
 	0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x1c, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x55, 0x73,
 	0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x1a, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x12, 0x0a,
-	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x32, 0x77, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x12, 0x31, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x12, 0x11, 0x2e, 0x75,
-	0x73, 0x65, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a,
-	0x10, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65,
-	0x72, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x16,
+	0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x58, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1b, 0x0a,
+	0x09, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x6c, 0x61, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x66, 0x69,
+	0x72, 0x73, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x66, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61,
+	0x69, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x22,
+	0x2f, 0x0a, 0x05, 0x55, 0x73, 0x65, 0x72, 0x73, 0x12, 0x26, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73,
+	0x32, 0x78, 0x0a, 0x0b, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x32, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x12, 0x11, 0x2e, 0x75, 0x73,
+	0x65, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x11,
+	0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72,
+	0x73, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x16,
 	0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x47, 0x65, 0x74, 0x55,
 	0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x10, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x22, 0x00, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f,
@@ -190,22 +260,24 @@ func file_user_proto_proto_rawDescGZIP() []byte {
 	return file_user_proto_proto_rawDescData
 }
 
-var file_user_proto_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_user_proto_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_user_proto_proto_goTypes = []interface{}{
 	(*Empty)(nil),      // 0: user_proto.Empty
 	(*GetUserReq)(nil), // 1: user_proto.GetUserReq
 	(*User)(nil),       // 2: user_proto.User
+	(*Users)(nil),      // 3: user_proto.Users
 }
 var file_user_proto_proto_depIdxs = []int32{
-	0, // 0: user_proto.UserService.GetUsers:input_type -> user_proto.Empty
-	1, // 1: user_proto.UserService.GetUser:input_type -> user_proto.GetUserReq
-	2, // 2: user_proto.UserService.GetUsers:output_type -> user_proto.User
-	2, // 3: user_proto.UserService.GetUser:output_type -> user_proto.User
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: user_proto.Users.users:type_name -> user_proto.User
+	0, // 1: user_proto.UserService.GetUsers:input_type -> user_proto.Empty
+	1, // 2: user_proto.UserService.GetUser:input_type -> user_proto.GetUserReq
+	3, // 3: user_proto.UserService.GetUsers:output_type -> user_proto.Users
+	2, // 4: user_proto.UserService.GetUser:output_type -> user_proto.User
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_proto_init() }
@@ -250,6 +322,18 @@ func file_user_proto_proto_init() {
 				return nil
 			}
 		}
+		file_user_proto_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Users); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -257,7 +341,7 @@ func file_user_proto_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_user_proto_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -283,7 +367,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserServiceClient interface {
-	GetUsers(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error)
+	GetUsers(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Users, error)
 	GetUser(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*User, error)
 }
 
@@ -295,8 +379,8 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) GetUsers(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error) {
-	out := new(User)
+func (c *userServiceClient) GetUsers(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Users, error) {
+	out := new(Users)
 	err := c.cc.Invoke(ctx, "/user_proto.UserService/GetUsers", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -315,7 +399,7 @@ func (c *userServiceClient) GetUser(ctx context.Context, in *GetUserReq, opts ..
 
 // UserServiceServer is the server API for UserService service.
 type UserServiceServer interface {
-	GetUsers(context.Context, *Empty) (*User, error)
+	GetUsers(context.Context, *Empty) (*Users, error)
 	GetUser(context.Context, *GetUserReq) (*User, error)
 }
 
@@ -323,7 +407,7 @@ type UserServiceServer interface {
 type UnimplementedUserServiceServer struct {
 }
 
-func (*UnimplementedUserServiceServer) GetUsers(context.Context, *Empty) (*User, error) {
+func (*UnimplementedUserServiceServer) GetUsers(context.Context, *Empty) (*Users, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsers not implemented")
 }
 func (*UnimplementedUserServiceServer) GetUser(context.Context, *GetUserReq) (*User, error) {
