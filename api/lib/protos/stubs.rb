@@ -1,9 +1,9 @@
 require 'pinger_pb.rb'
 require 'pinger_services_pb.rb'
-require 'user_pb.rb'
-require 'user_services_pb.rb'
+require 'user_proto_pb.rb'
+require 'user_proto_services_pb.rb'
 
-module Proto
+module Protos
   module Stubs
     # 環境変数を定義
     name = ENV['GRPC_SERVICE_NAME']
