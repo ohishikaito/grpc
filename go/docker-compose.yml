@@ -9,3 +9,8 @@ services:
     tty: true
     ports:
       - "5300:5300"
+
+networks:
+  default:
+    external:
+      name: go_default

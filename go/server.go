@@ -14,7 +14,9 @@ import (
 type server struct{}
 
 func main() {
-	listener, err := net.Listen("tcp", ":5300")
+	// listener, err := net.Listen("tcp4", ":5300") // 0.0.0.0:5300
+	listener, err := net.Listen("tcp", ":5300") // [::]:5300
+	fmt.Println(listener.Addr())
 	if err != nil {
 		log.Fatalf("failed to listen: %v\n", err)
 		return

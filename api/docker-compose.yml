@@ -16,3 +16,8 @@ services:
 
 volumes:
   sockets:
+
+networks:
+  default:
+    external:
+      name: go_default
