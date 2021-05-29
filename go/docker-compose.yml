@@ -9,6 +9,8 @@ services:
     tty: true
     ports:
       - "5300:5300"
+    environment:
+      - GRPC_SERVICE_PORT=5300
 
 networks:
   default:
