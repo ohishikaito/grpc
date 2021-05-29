@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"grpc/proto/pinger"
-	"grpc/proto/user"
+	"grpc/protos/pinger"
+	"grpc/protos/user"
 	"log"
 	"net"
 
