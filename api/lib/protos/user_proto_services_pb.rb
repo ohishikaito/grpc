@@ -15,6 +15,7 @@ module UserProto
       self.service_name = 'user_proto.UserService'
 
       rpc :GetUsers, ::UserProto::Empty, ::UserProto::User
+      rpc :GetUser, ::UserProto::GetUserReq, ::UserProto::User
     end
 
     Stub = Service.rpc_stub_class

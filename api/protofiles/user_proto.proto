@@ -7,9 +7,14 @@ option go_package = "./user";
 
 service UserService {
   rpc GetUsers(Empty) returns (User) {}
+  rpc GetUser(GetUserReq) returns (User) {}
 }
 
 message Empty {}
+
+message GetUserReq {
+  int64 id = 1;
+}
 
 message User {
   string name = 1;

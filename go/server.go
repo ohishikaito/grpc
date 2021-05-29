@@ -48,3 +48,11 @@ func (s *server) GetUsers(ctx context.Context, req *user.Empty) (*user.User, err
 	}
 	return user, nil
 }
+
+func (s *server) GetUser(ctx context.Context, req *user.GetUserReq) (*user.User, error) {
+	fmt.Println(req, "req")
+	user := &user.User{
+		Name: "getUser",
+	}
+	return user, nil
+}
