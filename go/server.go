@@ -20,6 +20,12 @@ func main() {
 		log.Fatalf("failed to listen: %v\n", err)
 		return
 	}
+	// conn := infrastructure.NewGormConnect()
+	// userRepository := repository.NewUserRepository(conn)
+	// userUsecase := usecase.NewUserUsecase(userRepository)
+	// userController := controller.NewUserController(userUsecase)
+	// user.RegisterUserServiceServer(grpcServer, userController)
+
 	grpcServer := grpc.NewServer()
 
 	pinger.RegisterPingerServiceServer(grpcServer, &server{})
