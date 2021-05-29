@@ -42,7 +42,7 @@ func (s *server) Ping(ctx context.Context, req *pinger.Empty) (*pinger.Pong, err
 	return pong, nil
 }
 
-func (s *server) GetUser(ctx context.Context, req *user.Empty) (*user.User, error) {
+func (s *server) GetUsers(ctx context.Context, req *user.Empty) (*user.User, error) {
 	user := &user.User{
 		Name: "kaito",
 	}

@@ -14,7 +14,7 @@ module UserProto
       self.unmarshal_class_method = :decode
       self.service_name = 'user_proto.UserService'
 
-      rpc :GetUser, ::UserProto::Empty, ::UserProto::User
+      rpc :GetUsers, ::UserProto::Empty, ::UserProto::User
     end
 
     Stub = Service.rpc_stub_class
