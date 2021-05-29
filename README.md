@@ -57,3 +57,6 @@ server $ で、
 `bundle exec grpc_tools_ruby_protoc -I ../protofiles --ruby_out=lib/user/user_service --grpc_out=lib/user/user_service ../protofiles/user.proto`
 または
 `bundle exec grpc_tools_ruby_protoc -I ../protofiles --ruby_out=lib/proto --grpc_out=lib/proto ../protofiles/pinger.proto`
+
+railsのdocker内だと
+`bundle exec grpc_tools_ruby_protoc -I ./protofiles --ruby_out=lib/proto --grpc_out=lib/proto ./protofiles/user_proto.proto`
