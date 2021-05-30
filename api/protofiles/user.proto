@@ -2,12 +2,14 @@ syntax = "proto3";
 
 // NOTE: RailsのZeitwerkのautoloadに引っかかるので、package名をpbに統一
 package pb;
+import "google/protobuf/timestamp.proto";
 
 option go_package = "./user";
 
 service UserService {
   rpc GetUsers(GetUsersReq) returns (Users) {}
   rpc GetUser(GetUserReq) returns (User) {}
+  rpc CreateUser(CreateUserReq) returns (User) {}
 }
 
 message GetUsersReq {}
@@ -16,10 +18,17 @@ message GetUserReq {
   uint64 id = 1;
 }
 
+message CreateUserReq {
+  string last_name = 1;
+  string first_name = 2;
+}
+
 message User {
   uint64 id = 1;
   string last_name = 2;
   string first_name = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
 }
 
 message Users {

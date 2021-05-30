@@ -9,6 +9,7 @@ import (
 type UserRepository interface {
 	GetUsers() ([]*domain.User, error)
 	GetUserById(id uint64) (*domain.User, error)
+	CreateUser(user *domain.User) (*domain.User, error)
 }
 
 type userRepository struct {
@@ -32,6 +33,13 @@ func (r *userRepository) GetUsers() ([]*domain.User, error) {
 func (r *userRepository) GetUserById(id uint64) (*domain.User, error) {
 	user := &domain.User{}
 	if err := r.db.First(user, id).Error; err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
+func (r *userRepository) CreateUser(user *domain.User) (*domain.User, error) {
+	if err := r.db.Create(user).Error; err != nil {
 		return nil, err
 	}
 	return user, nil

@@ -3,15 +3,14 @@ package converter
 import (
 	"grpc/domain"
 	pb "grpc/protos/user"
+
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func ConvertUsers(users []*domain.User) (*pb.Users, error) {
 	var pbUsers []*pb.User
 	for _, user := range users {
-		pbUser, err := ConvertUser(user)
-		if err != nil {
-			return nil, err
-		}
+		pbUser, _ := ConvertUser(user)
 		pbUsers = append(pbUsers, pbUser)
 	}
 	return &pb.Users{Users: pbUsers}, nil
@@ -22,6 +21,8 @@ func ConvertUser(user *domain.User) (*pb.User, error) {
 		Id:        user.Id,
 		LastName:  user.LastName,
 		FirstName: user.FirstName,
+		CreatedAt: timestamppb.New(user.CreatedAt),
+		UpdatedAt: timestamppb.New(user.UpdatedAt),
 	}
 	return pbUser, nil
 }
