@@ -15,6 +15,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :last_name, :string, 1
       optional :first_name, :string, 2
     end
+    add_message "pb.UpdateUserReq" do
+      optional :id, :uint64, 1
+      optional :last_name, :string, 2
+      optional :first_name, :string, 3
+    end
     add_message "pb.User" do
       optional :id, :uint64, 1
       optional :last_name, :string, 2
@@ -32,6 +37,7 @@ module Pb
   GetUsersReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.GetUsersReq").msgclass
   GetUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.GetUserReq").msgclass
   CreateUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.CreateUserReq").msgclass
+  UpdateUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.UpdateUserReq").msgclass
   User = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.User").msgclass
   Users = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.Users").msgclass
 end

@@ -46,3 +46,16 @@ func (c *userController) CreateUser(ctx context.Context, req *pb.CreateUserReq) 
 	}
 	return converter.ConvertUser(user)
 }
+
+func (c *userController) UpdateUser(ctx context.Context, req *pb.UpdateUserReq) (*pb.User, error) {
+	reqUser := &domain.User{
+		Id:        req.Id,
+		LastName:  req.LastName,
+		FirstName: req.FirstName,
+	}
+	user, err := c.userUsecase.UpdateUser(reqUser)
+	if err != nil {
+		return nil, err
+	}
+	return converter.ConvertUser(user)
+}

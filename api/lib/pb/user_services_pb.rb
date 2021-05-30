@@ -17,6 +17,7 @@ module Pb
       rpc :GetUsers, ::Pb::GetUsersReq, ::Pb::Users
       rpc :GetUser, ::Pb::GetUserReq, ::Pb::User
       rpc :CreateUser, ::Pb::CreateUserReq, ::Pb::User
+      rpc :UpdateUser, ::Pb::UpdateUserReq, ::Pb::User
     end
 
     Stub = Service.rpc_stub_class

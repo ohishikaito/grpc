@@ -1,2 +1,3 @@
 .DS_Store
 go/tmp
+go/sql_log_file
