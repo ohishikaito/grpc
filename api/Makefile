@@ -7,4 +7,4 @@ bash:
 protoc:
 	docker-compose run app \
 	bundle exec grpc_tools_ruby_protoc -I ./protofiles \
-	--ruby_out=lib/protos --grpc_out=lib/protos ./protofiles/*.proto
+	--ruby_out=lib/pb --grpc_out=lib/pb ./protofiles/*.proto

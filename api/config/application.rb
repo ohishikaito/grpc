@@ -24,11 +24,15 @@ module Api
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    # 絶対にやってはいけない設定。Zeitwerkをオフにする
+    # 絶対にやってはいけない設定。ZeitwerkをOFFにする
     config.autoloader = :classic
+    # ZeitwerkをOFFにしたら、↓で読まないと
+    config.paths.add 'lib/pb', eager_load: true
 
+    # ZeitwerkをONにすると、↓にしてlib配下を読ませる必要あり
+    # config.paths.add 'lib', eager_load: true
+    # autoload_pathsの一覧
     # ActiveSupport::Dependencies.autoload_paths
-    config.paths.add 'lib/protos', eager_load: true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

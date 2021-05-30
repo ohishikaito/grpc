@@ -1,7 +1,6 @@
 syntax = "proto3";
 
-// Railsのmodelのclass名と干渉するので、package名はprotoにする
-package user_proto;
+package pb.user;
 
 option go_package = "./user";
 
