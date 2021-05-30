@@ -24,6 +24,10 @@ module Api
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    # timezoneを東京に指定
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+
     # ZeitwerkをONにすると、↓にしてlib配下を読ませる必要あり
     config.paths.add 'lib', eager_load: true
     # autoload_pathsの一覧

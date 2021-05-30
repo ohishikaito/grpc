@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def index
     req = Pb::GetUsersReq.new
     users = Stubs::UserStub::Stub.get_users(req)
-    render json: users, status: 200
+    render json: users, status: :ok
   end
 
   def create
