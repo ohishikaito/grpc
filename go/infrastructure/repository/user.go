@@ -2,6 +2,7 @@ package repository
 
 import (
 	"grpc/domain"
+	"grpc/infrastructure/response"
 
 	"github.com/jinzhu/gorm"
 )
@@ -35,10 +36,9 @@ func (r *userRepository) GetUsers() ([]*domain.User, error) {
 func (r *userRepository) GetUserById(id uint64) (*domain.User, error) {
 	user := &domain.User{}
 	if err := r.db.First(user, id).Error; err != nil {
-		// 意味ある？
-		// if gorm.IsRecordNotFoundError(err) {
-		// 	err = status.Errorf(codes.NotFound, "user with id='%d' is not found", id)
-		// }
+		if gorm.IsRecordNotFoundError(err) {
+			return nil, response.RecordNotFound(err)
+		}
 		return nil, err
 	}
 	return user, nil
