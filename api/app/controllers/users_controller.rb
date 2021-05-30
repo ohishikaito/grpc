@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    req = Pb::GetUserReq.new({id: 111})
+    req = Pb::GetUserReq.new({id: params[:id].to_i})
     user = Stubs::UserStub::Stub.get_user(req)
     render json: user, status: :ok
   end
