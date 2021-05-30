@@ -6,7 +6,8 @@ import (
 )
 
 type UserUsecase interface {
-	GetUser() (*domain.User, error)
+	GetUsers() ([]*domain.User, error)
+	GetUserById(id uint64) (*domain.User, error)
 }
 
 type userUsecase struct {
@@ -19,6 +20,10 @@ func NewUserUsecase(ur repository.UserRepository) *userUsecase {
 	}
 }
 
-func (u *userUsecase) GetUser() (*domain.User, error) {
-	return u.userRepository.GetUser()
+func (u *userUsecase) GetUsers() ([]*domain.User, error) {
+	return u.userRepository.GetUsers()
+}
+
+func (u *userUsecase) GetUserById(id uint64) (*domain.User, error) {
+	return u.userRepository.GetUserById(id)
 }

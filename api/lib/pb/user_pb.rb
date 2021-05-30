@@ -8,12 +8,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "pb.GetUsersReq" do
     end
     add_message "pb.GetUserReq" do
-      optional :id, :int64, 1
+      optional :id, :uint64, 1
     end
     add_message "pb.User" do
-      optional :last_name, :string, 1
-      optional :first_name, :string, 2
-      optional :email, :string, 3
+      optional :id, :uint64, 1
+      optional :last_name, :string, 2
+      optional :first_name, :string, 3
     end
     add_message "pb.Users" do
       repeated :users, :message, 1, "pb.User"

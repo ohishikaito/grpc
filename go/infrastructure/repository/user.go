@@ -7,7 +7,8 @@ import (
 )
 
 type UserRepository interface {
-	GetUser() (*domain.User, error)
+	GetUsers() ([]*domain.User, error)
+	GetUserById(id uint64) (*domain.User, error)
 }
 
 type userRepository struct {
@@ -20,9 +21,17 @@ func NewUserRepository(db *gorm.DB) *userRepository {
 	}
 }
 
-func (r *userRepository) GetUser() (*domain.User, error) {
-	var user *domain.User
-	if err := r.db.Find(&user).Error; err != nil {
+func (r *userRepository) GetUsers() ([]*domain.User, error) {
+	var users []*domain.User
+	if err := r.db.Find(&users).Error; err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
+func (r *userRepository) GetUserById(id uint64) (*domain.User, error) {
+	user := &domain.User{}
+	if err := r.db.First(user, id).Error; err != nil {
 		return nil, err
 	}
 	return user, nil

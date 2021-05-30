@@ -5,7 +5,7 @@ import (
 )
 
 type User struct {
-	Uid       string `gorm:"primaryKey"`
+	Id        uint64 `gorm:"primary_key"`
 	LastName  string `validate:"required"`
 	FirstName string `validate:"required"`
 
