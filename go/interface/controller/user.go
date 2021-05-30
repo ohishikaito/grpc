@@ -6,6 +6,8 @@ import (
 	"grpc/interface/converter"
 	pb "grpc/protos/user"
 	"grpc/usecase"
+
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 type userController struct {
@@ -58,4 +60,14 @@ func (c *userController) UpdateUser(ctx context.Context, req *pb.UpdateUserReq) 
 		return nil, err
 	}
 	return converter.ConvertUser(user)
+}
+
+func (c *userController) DestroyUser(ctx context.Context, req *pb.DestroyUserReq) (*emptypb.Empty, error) {
+	if _, err := c.userUsecase.GetUserById(req.Id); err != nil {
+		return nil, err
+	}
+	if err := c.userUsecase.DeleteUserById(req.Id); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
 }

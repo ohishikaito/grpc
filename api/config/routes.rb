@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :users, only: %i[index create show update destory]
+  resources :users, only: %i[index create show update destroy]
 end

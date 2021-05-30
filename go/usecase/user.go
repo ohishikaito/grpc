@@ -10,6 +10,7 @@ type UserUsecase interface {
 	GetUserById(id uint64) (*domain.User, error)
 	CreateUser(user *domain.User) (*domain.User, error)
 	UpdateUser(user *domain.User) (*domain.User, error)
+	DeleteUserById(id uint64) error
 }
 
 type userUsecase struct {
@@ -31,9 +32,14 @@ func (u *userUsecase) GetUserById(id uint64) (*domain.User, error) {
 }
 
 func (u *userUsecase) CreateUser(user *domain.User) (*domain.User, error) {
+	// バリデーション作りたい
 	return u.userRepository.CreateUser(user)
 }
 
 func (u *userUsecase) UpdateUser(user *domain.User) (*domain.User, error) {
 	return u.userRepository.UpdateUser(user)
+}
+
+func (u *userUsecase) DeleteUserById(id uint64) error {
+	return u.userRepository.DeleteUserById(id)
 }

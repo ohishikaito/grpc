@@ -4,8 +4,6 @@ import (
 	"grpc/domain"
 
 	"github.com/jinzhu/gorm"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 type UserRepository interface {
@@ -13,6 +11,7 @@ type UserRepository interface {
 	GetUserById(id uint64) (*domain.User, error)
 	CreateUser(user *domain.User) (*domain.User, error)
 	UpdateUser(user *domain.User) (*domain.User, error)
+	DeleteUserById(id uint64) error
 }
 
 type userRepository struct {
@@ -36,9 +35,10 @@ func (r *userRepository) GetUsers() ([]*domain.User, error) {
 func (r *userRepository) GetUserById(id uint64) (*domain.User, error) {
 	user := &domain.User{}
 	if err := r.db.First(user, id).Error; err != nil {
-		if gorm.IsRecordNotFoundError(err) {
-			err = status.Errorf(codes.NotFound, "user with id='%d' is not found", id)
-		}
+		// 意味ある？
+		// if gorm.IsRecordNotFoundError(err) {
+		// 	err = status.Errorf(codes.NotFound, "user with id='%d' is not found", id)
+		// }
 		return nil, err
 	}
 	return user, nil
@@ -56,4 +56,12 @@ func (r *userRepository) UpdateUser(user *domain.User) (*domain.User, error) {
 		return nil, err
 	}
 	return user, nil
+}
+
+func (r *userRepository) DeleteUserById(id uint64) error {
+	query := "DELETE FROM users WHERE id = ?"
+	if err := r.db.Exec(query, id).Error; err != nil {
+		return err
+	}
+	return nil
 }

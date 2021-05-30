@@ -30,6 +30,12 @@ class UsersController < ApplicationController
     render json: user, status: :ok
   end
 
+  def destroy
+    req = Pb::DestroyUserReq.new({id: params[:id].to_i})
+    user = Stubs::UserStub::Stub.destroy_user(req)
+    head :no_content
+  end
+
   private
     def user_params
       params.require(:user).permit(
