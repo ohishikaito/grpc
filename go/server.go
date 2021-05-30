@@ -45,7 +45,6 @@ func (s *server) GetUsers(ctx context.Context, req *pb.Empty) (*pb.Users, error)
 	pbUsers = append(pbUsers, pbUser)
 	pbUsers = append(pbUsers, pbUser)
 	pbUsers = append(pbUsers, pbUser)
-	fmt.Println(pbUsers)
 	return &pb.Users{
 		Users: pbUsers,
 	}, nil

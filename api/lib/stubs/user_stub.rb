@@ -2,6 +2,8 @@ require 'config'
 
 module Stubs
   module UserStub
-    Stub = Pb::User::UserService::Stub.new(Stubs::Config::GRPC_HOSTNAME, :this_channel_is_insecure)
+    extend Stubs::Config
+
+    Stub = create_stub(Pb::User::UserService::Stub)
   end
 end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
-  Dir[File.expand_path("#{Rails.root}/lib/stubs", __FILE__) << '/*.rb'].each do |file|
-    require file
-  end
+  extend LoadStubs
+
+  # NOTE: gRPCのstubを読み込む
+  load_stubs
 end
