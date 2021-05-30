@@ -24,28 +24,18 @@ module Api
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    # # 絶対にやってはいけない設定。ZeitwerkをOFFにする
-    # config.autoloader = :classic
-    # # ZeitwerkをOFFにしたら、↓で読まないと
-    # config.paths.add 'lib/pb', eager_load: true
-    # config.paths.add 'lib/stubs', eager_load: true
-
     # ZeitwerkをONにすると、↓にしてlib配下を読ませる必要あり
-    # config.autoloader = :zeitwerk
     config.paths.add 'lib', eager_load: true
-    # config.paths.add 'lib', eager_load: false
-    # eager_load: falseを試してみたいw
+    # autoload_pathsの一覧
+    # ActiveSupport::Dependencies.autoload_paths
 
-    # eager_loadすると Unable to add defs to DescriptorPool: duplicate symbol 'pb.user.Users' errorが発生する
+    # NOTE: Unable to add defs to DescriptorPool: duplicate symbol 'pb.user.Users' errorが発生するため
     # https://github.com/ruby-protobuf/protobuf/issues/381
     grpc_root = File.join(config.root, "/lib/pb")
     $LOAD_PATH.unshift(grpc_root)
     Dir[File.join(grpc_root, "*.rb")].each do |file|
       require file
     end
-
-    # autoload_pathsの一覧
-    # ActiveSupport::Dependencies.autoload_paths
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

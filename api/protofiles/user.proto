@@ -6,11 +6,11 @@ package pb;
 option go_package = "./user";
 
 service UserService {
-  rpc GetUsers(Empty) returns (Users) {}
+  rpc GetUsers(GetUsersReq) returns (Users) {}
   rpc GetUser(GetUserReq) returns (User) {}
 }
 
-message Empty {}
+message GetUsersReq {}
 
 message GetUserReq {
   int64 id = 1;

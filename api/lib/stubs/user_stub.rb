@@ -1,5 +1,3 @@
-# require 'config'
-
 module Stubs
   module UserStub
     extend Stubs::Config

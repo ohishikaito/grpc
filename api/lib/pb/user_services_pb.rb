@@ -14,7 +14,7 @@ module Pb
       self.unmarshal_class_method = :decode
       self.service_name = 'pb.UserService'
 
-      rpc :GetUsers, ::Pb::Empty, ::Pb::Users
+      rpc :GetUsers, ::Pb::GetUsersReq, ::Pb::Users
       rpc :GetUser, ::Pb::GetUserReq, ::Pb::User
     end
 

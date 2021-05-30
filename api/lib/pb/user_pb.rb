@@ -5,7 +5,7 @@ require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("user.proto", :syntax => :proto3) do
-    add_message "pb.Empty" do
+    add_message "pb.GetUsersReq" do
     end
     add_message "pb.GetUserReq" do
       optional :id, :int64, 1
@@ -22,7 +22,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Pb
-  Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.Empty").msgclass
+  GetUsersReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.GetUsersReq").msgclass
   GetUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.GetUserReq").msgclass
   User = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.User").msgclass
   Users = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.Users").msgclass
