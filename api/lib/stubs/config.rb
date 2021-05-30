@@ -1,8 +1,10 @@
 module Stubs
   module Config
     # 環境変数を定義
-    name = ENV['GRPC_SERVICE_NAME']
-    port = ENV['GRPC_SERVICE_PORT']
+    # name = ENV['GRPC_SERVICE_NAME']
+    # port = ENV['GRPC_SERVICE_PORT']
+    name = "localhost"
+    port = "5300"
     GRPC_HOSTNAME = name + ":" + port
 
     # lib配下のファイルを読み込むように

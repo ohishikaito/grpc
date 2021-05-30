@@ -5,7 +5,7 @@ require 'grpc'
 require 'user_pb'
 
 module Pb
-  module User
+  # module User
     module UserService
       class Service
 
@@ -21,5 +21,5 @@ module Pb
 
       Stub = Service.rpc_stub_class
     end
-  end
+  # end
 end
