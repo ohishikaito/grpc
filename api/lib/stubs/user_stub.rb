@@ -5,6 +5,5 @@ module Stubs
     extend Stubs::Config
 
     Stub = create_stub(Pb::UserService::Stub)
-    # Stub = create_stub(Pb::User::UserService::Stub)
   end
 end

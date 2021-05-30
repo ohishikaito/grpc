@@ -33,6 +33,8 @@ module Api
     # ZeitwerkをONにすると、↓にしてlib配下を読ませる必要あり
     # config.autoloader = :zeitwerk
     config.paths.add 'lib', eager_load: true
+    # config.paths.add 'lib', eager_load: false
+    # eager_load: falseを試してみたいw
 
     # eager_loadすると Unable to add defs to DescriptorPool: duplicate symbol 'pb.user.Users' errorが発生する
     # https://github.com/ruby-protobuf/protobuf/issues/381

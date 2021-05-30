@@ -13,10 +13,3 @@ end
 Rails.autoloaders.each do |autoloader|
   autoloader.inflector = WithProtocolBufferInflector.new
 end
-
-# ■ゴール
-# pb_user_user_service.rbで読み込ませたい
-# ■そのために
-# Pb::User::UserServiceって認識できるようにZeitwerkを調教する必要あり
-# ↓
-# 前提として、user_pbって読み込める？

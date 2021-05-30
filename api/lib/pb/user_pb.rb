@@ -5,27 +5,25 @@ require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("user.proto", :syntax => :proto3) do
-    add_message "pb.user.Empty" do
+    add_message "pb.Empty" do
     end
-    add_message "pb.user.GetUserReq" do
+    add_message "pb.GetUserReq" do
       optional :id, :int64, 1
     end
-    add_message "pb.user.User" do
+    add_message "pb.User" do
       optional :last_name, :string, 1
       optional :first_name, :string, 2
       optional :email, :string, 3
     end
-    add_message "pb.user.Users" do
-      repeated :users, :message, 1, "pb.user.User"
+    add_message "pb.Users" do
+      repeated :users, :message, 1, "pb.User"
     end
   end
 end
 
 module Pb
-  module User
-    Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.user.Empty").msgclass
-    GetUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.user.GetUserReq").msgclass
-    User = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.user.User").msgclass
-    Users = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.user.Users").msgclass
-  end
+  Empty = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.Empty").msgclass
+  GetUserReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.GetUserReq").msgclass
+  User = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.User").msgclass
+  Users = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("pb.Users").msgclass
 end

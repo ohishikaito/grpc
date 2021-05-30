@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-package pb.user;
+// NOTE: RailsのZeitwerkのautoloadに引っかかるので、package名をpbに統一
+package pb;
 
 option go_package = "./user";
 
