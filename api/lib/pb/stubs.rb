@@ -11,3 +11,5 @@ module Pb
     UserStub = Pb::User::UserService::Stub.new(hostname, :this_channel_is_insecure)
   end
 end
+
+# ファイル名をUserStubにして、定数名をStubにする
