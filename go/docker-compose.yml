@@ -9,23 +9,23 @@ services:
     tty: true
     ports:
       - "5300:5300"
-    depends_on:
-      - "db"
+    # depends_on:
+    #   - "db"
     environment:
       - GRPC_SERVICE_PORT=5300
 
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: grpc_development
-      MYSQL_ROOT_PASSWORD: finder0501
-      TZ: "Asia/Tokyo"
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    volumes:
-      - db-data:/var/lib/mysql
-      - ./my.cnf:/etc/mysql/conf.d/my.cnf
-    ports:
-      - 13306:3306
+  # db:
+  #   image: mysql:8.0
+  #   environment:
+  #     MYSQL_DATABASE: grpc_development
+  #     MYSQL_ROOT_PASSWORD: finder0501
+  #     TZ: "Asia/Tokyo"
+  #   command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  #   volumes:
+  #     - db-data:/var/lib/mysql
+  #     - ./my.cnf:/etc/mysql/conf.d/my.cnf
+  #   ports:
+  #     - 13306:3306
 
 volumes:
   db-data:
