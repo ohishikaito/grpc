@@ -28,6 +28,7 @@ module Api
     config.autoloader = :classic
     # ZeitwerkをOFFにしたら、↓で読まないと
     config.paths.add 'lib/pb', eager_load: true
+    config.paths.add 'lib/stubs', eager_load: true
 
     # ZeitwerkをONにすると、↓にしてlib配下を読ませる必要あり
     # config.paths.add 'lib', eager_load: true
