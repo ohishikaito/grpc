@@ -5,7 +5,7 @@ import (
 	"grpc/infrastructure"
 	"grpc/infrastructure/repository"
 	"grpc/interface/controller"
-	"grpc/protos/user"
+	"grpc/pb/user"
 	"grpc/usecase"
 	"log"
 	"net"

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"grpc/protos/user"
+	"grpc/pb/user"
 
 	"google.golang.org/grpc"
 )

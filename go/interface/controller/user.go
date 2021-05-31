@@ -4,7 +4,7 @@ import (
 	"context"
 	"grpc/domain"
 	"grpc/interface/converter"
-	pb "grpc/protos/user"
+	pb "grpc/pb/user"
 	"grpc/usecase"
 
 	"google.golang.org/protobuf/types/known/emptypb"
