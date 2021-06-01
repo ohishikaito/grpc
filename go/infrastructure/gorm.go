@@ -9,7 +9,10 @@ import (
 )
 
 func NewGormConnect() *gorm.DB {
-	database := "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
+	// NOTE: railsのDBと合わせるため、loc=Asia%2FTokyoをつけない。(DB保存時はUTC、取り出す時にJTCにする)
+	// https://github.com/go-sql-driver/mysql
+	// database := "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
+	database := "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true"
 	db, err := gorm.Open("mysql", database)
 	if err != nil {
 		log.Fatal(err.Error())

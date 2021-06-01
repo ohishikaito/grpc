@@ -1,28 +1,22 @@
 package converter
 
 import (
-	"errors"
 	"time"
 
-	"github.com/golang/protobuf/ptypes"
-	"github.com/golang/protobuf/ptypes/timestamp"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-// func MarshalTimeProto(protoT timestamp.Timestamp) graphql.Marshaler {
-// 	t, _ := ptypes.Timestamp(&protoT)
-// 	return graphql.WriterFunc(func(w io.Writer) {
-// 		io.WriteString(w, strconv.Quote(t.In(time.Local).Format(time.RFC3339)))
-// 	})
-// }
+// NOTE: UTCからInメソッドを使ってJSTに変えようとしたけど、
+// timestamppb.Newメソッドを使うとUTCに書き換えられるので、
+// UTCとJSTの時差9時間を直接プラスする。要リファクタ
+func FromUTCtoJSTinProto(date time.Time) *timestamppb.Timestamp {
+	// jst, _ := time.LoadLocation("Asia/Tokyo")
+	// fmt.Println(jst.String())
+	// fmt.Println(time.Now().In(jst))
+	// jjjj := date.In(jst)
+	// fmt.Println(jjjj)
+	// fmt.Println(timestamppb.New(date))
+	// fmt.Println(timestamppb.New(jjjj))
 
-func UnmarshalTimeProto(v interface{}) (timestamp.Timestamp, error) {
-	if tmpStr, ok := v.(string); ok {
-		t, err := time.Parse(time.RFC3339, tmpStr)
-		if err != nil {
-			return timestamp.Timestamp{}, err
-		}
-		a, _ := ptypes.TimestampProto(t)
-		return *a, nil
-	}
-	return timestamp.Timestamp{}, errors.New("time should be RFC3339 formatted string")
+	return timestamppb.New(date.Add(9 * time.Hour))
 }

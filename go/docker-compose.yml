@@ -12,8 +12,6 @@ services:
     environment:
       - GRPC_SERVICE_PORT=5300
 
-volumes:
-  db-data:
 networks:
   default:
     external:
