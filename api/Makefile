@@ -2,7 +2,7 @@ attach:
 	docker attach api_app_1
 
 bash:
-	docker exec -it api_app_1 /bin/bash
+	docker exec -it api_app_1 bash
 
 restart:
 	docker-compose down && \
