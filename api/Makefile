@@ -4,10 +4,6 @@ attach:
 bash:
 	docker exec -it api_app_1 bash
 
-restart:
-	docker-compose down && \
-	docker-compose up
-
 go-pb-gen:
 	protoc -I ./protofiles ${s}.proto --go_out=plugins=grpc:../go/pb
 
