@@ -22,7 +22,9 @@ class UsersController < ApplicationController
 
   def update
     req = Pb::UpdateUserReq.new({
-      id: user_params[:id],
+      # NOTE: user_paramsからidを取得すると、別のユーザーを更新できる&idがないと全件更新される
+      # id: user_params[:id],
+      id: params[:id].to_i,
       last_name: user_params[:last_name],
       first_name: user_params[:first_name]
     })
