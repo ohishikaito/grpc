@@ -1,4 +1,4 @@
-FROM golang:1.15.2-alpine as dev
+FROM golang:1.15.2-alpine AS dev
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ COPY . .
 
 CMD ["fresh"]
 
-FROM golang:1.15.2-alpine as builder
+FROM golang:1.15.2-alpine AS builder
 
 WORKDIR /src
 
@@ -26,7 +26,7 @@ COPY . .
 RUN go build -o main .
 
 
-FROM alpine as prod
+FROM alpine AS prod
 
 WORKDIR /app
 
