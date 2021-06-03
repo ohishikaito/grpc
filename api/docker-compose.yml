@@ -3,8 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: .
-      target: dev
+      dockerfile: ./docker/api/Dockerfile.dev
     command: bundle exec rails s -b '0.0.0.0'
     stdin_open: true
     tty: true
