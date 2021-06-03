@@ -4,19 +4,20 @@
 
 FROM ruby:2.6.3
 
-# WORKDIR /app
+WORKDIR /app
 
-# ADD Gemfile .
-# ADD Gemfile.lock .
-# # add: ↓を明示的にinstallしないと、bundle installでエラー吐く
-# RUN gem install bundler:2.2.17
+ADD Gemfile .
+ADD Gemfile.lock .
+# add: ↓を明示的にinstallしないと、bundle installでエラー吐く
+RUN gem install bundler:2.2.17
+# 本番用はbundle installするgroupを絞る
 # RUN bundle config set without "development test"
-# RUN bundle install -j4
+RUN bundle install -j4
 
-# COPY . /app
+COPY . /app
 
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
+COPY entrypoint_prod.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint_prod.sh
+ENTRYPOINT ["entrypoint_prod.sh"]
 
-# EXPOSE 3000
+EXPOSE 3000
