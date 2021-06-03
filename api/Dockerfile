@@ -1,12 +1,3 @@
-FROM ruby:2.6.3 AS builder
-
-ADD Gemfile .
-ADD Gemfile.lock .
-# add: ↓を明示的にinstallしないと、bundle installでエラー吐く
-RUN gem install bundler:2.2.17
-
-RUN bundle install -j4
-
 FROM ruby:2.6.3 AS dev
 
 RUN apt-get update && \
@@ -15,7 +6,12 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY --from=builder /usr/local/bundle /usr/local/bundle
+ADD Gemfile .
+ADD Gemfile.lock .
+# add: ↓を明示的にinstallしないと、bundle installでエラー吐く
+RUN gem install bundler:2.2.17
+RUN bundle install -j4
+
 COPY . /app
 
 COPY entrypoint.sh /usr/bin/
