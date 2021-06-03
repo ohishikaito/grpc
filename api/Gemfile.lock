@@ -67,10 +67,14 @@ GEM
     ffi (1.15.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    google-protobuf (3.17.1)
     google-protobuf (3.17.1-universal-darwin)
     google-protobuf (3.17.1-x86_64-linux)
     googleapis-common-protos-types (1.0.6)
       google-protobuf (~> 3.14)
+    grpc (1.38.0)
+      google-protobuf (~> 3.15)
+      googleapis-common-protos-types (~> 1.0)
     grpc (1.38.0-universal-darwin)
       google-protobuf (~> 3.15)
       googleapis-common-protos-types (~> 1.0)
@@ -91,10 +95,14 @@ GEM
     marcel (1.0.1)
     method_source (1.0.0)
     mini_mime (1.1.0)
+    mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
     mysql2 (0.5.3)
     nio4r (2.5.7)
+    nokogiri (1.11.6)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.6-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.6-x86_64-linux)
@@ -161,6 +169,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
   x86_64-linux
 
@@ -182,4 +191,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.17
+   1.17.2

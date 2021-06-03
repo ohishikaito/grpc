@@ -8,8 +8,6 @@ WORKDIR /app
 
 ADD Gemfile .
 ADD Gemfile.lock .
-# add: ↓を明示的にinstallしないと、bundle installでエラー吐く
-RUN gem install bundler:2.2.17
 RUN bundle install -j4
 
 COPY . /app
