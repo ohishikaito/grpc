@@ -6,11 +6,10 @@ FROM ruby:2.6.3
 
 WORKDIR /app
 
-ADD Gemfile .
-ADD Gemfile.lock .
-# 本番用はbundle installするgroupを絞る
-# RUN bundle config set without "development test"
-RUN bundle install -j4
+COPY Gemfile .
+COPY Gemfile.lock .
+# NOTE: 本番用はdevelopmentとtest groupのgemをinstallしないように
+RUN bundle install -j4 --without=development test
 
 COPY . /app
 
