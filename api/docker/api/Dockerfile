@@ -1,7 +1,3 @@
-# localでdocker-compose upすると
-# Could not load the 'listen' gem. Add `gem 'listen'` to the development group of your Gemfile (LoadError)
-# って言われるから一旦保留
-
 FROM ruby:2.6.3
 
 WORKDIR /app

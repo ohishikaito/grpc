@@ -8,6 +8,14 @@ Rails.application.configure do
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
+
+  # ↓のエラーが出た時の解決策
+  # /usr/local/bundle/gems/zeitwerk-2.4.2/lib/zeitwerk/loader.rb:409:in `const_get': uninitialized constant Pb::UserServices (NameError)
+  # eager_load!するといけるんだがーw
+  Rails.application.eager_load!
+  # falseにしても動く。理由は分からん！
+  # config.eager_load = false
+  # 初期はtrue
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
