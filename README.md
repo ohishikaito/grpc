@@ -1,7 +1,7 @@
 <!-- root dirで
 `protoc -I ./proto pinger.proto --go_out=plugins=grpc:./pinger/lib`
 ってやってたけど、↓のerror
-
+ 
 ```
 protoc-gen-go: unable to determine Go import path for "pinger.proto"
 
