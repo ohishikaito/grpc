@@ -10,7 +10,11 @@ services:
     ports:
       - "5300:5300"
     environment:
+      - environment=development
+      # - environment=production
       - GRPC_SERVICE_PORT=5300
+    env_file:
+      - .env
 
 networks:
   default:
