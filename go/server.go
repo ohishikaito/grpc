@@ -24,7 +24,7 @@ func main() {
 	grpcServer := grpc.NewServer()
 	user.RegisterUserServiceServer(grpcServer, userController)
 
-	listener, err := net.Listen("tcp", ":"+os.Getenv("GRPC_SERVICE_PORT")) // [::]:5300
+	listener, err := net.Listen("tcp", ":"+os.Getenv("GRPC_SERVICE_PORT")) // [::]:50051
 	if err != nil {
 		log.Fatalf("failed to listen: %v\n", err)
 		return

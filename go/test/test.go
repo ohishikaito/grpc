@@ -28,7 +28,7 @@ func request() {
 }
 
 func newGrpcClientConn() *grpc.ClientConn {
-	conn, err := grpc.Dial("localhost:5300", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}

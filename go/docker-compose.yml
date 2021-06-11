@@ -8,11 +8,11 @@ services:
       - ./:/app:cached
     tty: true
     ports:
-      - "5300:5300"
+      - "50051:50051"
     environment:
       - environment=development
       # - environment=production
-      - GRPC_SERVICE_PORT=5300
+      - GRPC_SERVICE_PORT=50051
     env_file:
       - .env
 

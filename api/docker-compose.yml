@@ -15,7 +15,7 @@ services:
       - sockets:/app/tmp/sockets
     environment:
       - GRPC_SERVICE_NAME=go_app_1
-      - GRPC_SERVICE_PORT=5300
+      - GRPC_SERVICE_PORT=50051
     depends_on:
       - db
 
