@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-      target: dev
+      dockerfile: ./docker/Dockerfile.dev
     volumes:
       - ./:/app:cached
     tty: true
