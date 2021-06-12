@@ -33,8 +33,8 @@ func main() {
 		return
 	}
 	fmt.Println("serveします！")
-	fmt.Println("grpcServer.Serve")
+	if err := grpcServer.Serve(listener); err != nil {
+		fmt.Println("serve err", err)
+	}
 	fmt.Println("serveしました！")
-
-	grpcServer.Serve(listener)
 }
