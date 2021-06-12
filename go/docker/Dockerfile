@@ -15,6 +15,10 @@ FROM alpine
 
 WORKDIR /app
 
+RUN mkdir credentials
+COPY credentials/ca.crt credentials
+COPY credentials/server.key credentials
+
 COPY --from=builder /src/main .
 
 CMD ["./main"]

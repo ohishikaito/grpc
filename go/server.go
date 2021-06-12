@@ -33,7 +33,7 @@ func main() {
 		return
 	}
 	fmt.Println("serveします！")
-	fmt.Printf("grpcServer.Serve")
+	fmt.Println("grpcServer.Serve")
 	fmt.Println("serveしました！")
 
 	grpcServer.Serve(listener)

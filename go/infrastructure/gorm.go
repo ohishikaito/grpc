@@ -17,10 +17,10 @@ func NewGormConnect() *gorm.DB {
 	fmt.Println(os.Getenv("environment"), "os.Getenv('environment')")
 	fmt.Println(os.Getenv("DB_HOST"), "os.Getenv('DB_HOST')")
 	switch os.Getenv("environment") {
-	case "development":
-		database = "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true"
 	case "production":
 		database = "root:finder0501@tcp(" + os.Getenv("DB_HOST") + ")/grpc-db?charset=utf8&parseTime=true"
+	default:
+		database = "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true"
 	}
 	db, err := gorm.Open("mysql", database)
 	if err != nil {

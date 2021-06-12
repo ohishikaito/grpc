@@ -10,8 +10,6 @@ services:
     ports:
       - "50051:50051"
     environment:
-      - environment=development
-      # - environment=production
       - GRPC_SERVICE_PORT=50051
 
 networks:
