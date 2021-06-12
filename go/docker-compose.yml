@@ -13,8 +13,6 @@ services:
       - environment=development
       # - environment=production
       - GRPC_SERVICE_PORT=50051
-    env_file:
-      - .env
 
 networks:
   default:
