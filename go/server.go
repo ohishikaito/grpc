@@ -21,8 +21,9 @@ func main() {
 	userController := controller.NewUserController(userUsecase)
 
 	grpcServer := infrastructure.NewGrpcServer()
-	user.RegisterUserServiceServer(grpcServer, userController)
 	fmt.Println(grpcServer, "grpcServer")
+	user.RegisterUserServiceServer(grpcServer, userController)
+	fmt.Println("RegisterUserServiceServerしました")
 
 	listener, err := net.Listen("tcp", ":"+os.Getenv("GRPC_SERVICE_PORT")) // [::]:50051
 	fmt.Println("Listenでerror", err)
@@ -31,7 +32,9 @@ func main() {
 		log.Fatalf("failed to listen: %v\n", err)
 		return
 	}
+	fmt.Println("serveします！")
 	fmt.Printf("grpcServer.Serve")
+	fmt.Println("serveしました！")
 
 	grpcServer.Serve(listener)
 }
