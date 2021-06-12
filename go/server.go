@@ -10,22 +10,24 @@ import (
 	"log"
 	"net"
 	"os"
-
-	"google.golang.org/grpc"
 )
 
 func main() {
 	db := infrastructure.NewGormConnect()
+	fmt.Println(db, "db")
 
 	userRepository := repository.NewUserRepository(db)
 	userUsecase := usecase.NewUserUsecase(userRepository)
 	userController := controller.NewUserController(userUsecase)
 
-	grpcServer := grpc.NewServer()
+	grpcServer := infrastructure.NewGrpcServer()
 	user.RegisterUserServiceServer(grpcServer, userController)
+	fmt.Println(grpcServer, "grpcServer")
 
 	listener, err := net.Listen("tcp", ":"+os.Getenv("GRPC_SERVICE_PORT")) // [::]:50051
+	fmt.Println("Listenでerror", err)
 	if err != nil {
+		fmt.Println("owaowari")
 		log.Fatalf("failed to listen: %v\n", err)
 		return
 	}
