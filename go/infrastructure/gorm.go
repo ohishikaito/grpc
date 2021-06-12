@@ -1,7 +1,6 @@
 package infrastructure
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -13,15 +12,13 @@ func NewGormConnect() *gorm.DB {
 	var database string
 	// NOTE: railsのDBと合わせるため、loc=Asia%2FTokyoをつけない。(DB保存時はUTC、取り出す時にJTCにする)
 	// https://github.com/go-sql-driver/mysql
-	// database := "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
-	fmt.Println(os.Getenv("environment"), "os.Getenv('environment')")
-	fmt.Println(os.Getenv("DB_HOST"), "os.Getenv('DB_HOST')")
 	switch os.Getenv("environment") {
 	case "production":
 		database = "root:finder0501@tcp(" + os.Getenv("DB_HOST") + ")/grpc-db?charset=utf8&parseTime=true"
 	default:
 		database = "root:finder0501@tcp(api_db_1)/grpc_development?charset=utf8&parseTime=true"
 	}
+
 	db, err := gorm.Open("mysql", database)
 	if err != nil {
 		log.Fatal(err.Error())
