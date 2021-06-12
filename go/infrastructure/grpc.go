@@ -11,7 +11,7 @@ import (
 func NewGrpcServer() *grpc.Server {
 	switch os.Getenv("environment") {
 	case "production":
-		// go側で認証はしなくても良い説？
+		// NOTE: client側はcrtファイルいらないけど、server側はTLSする必要ありそうだから残す
 		creds, err := credentials.NewServerTLSFromFile(
 			"credentials/ca.crt",
 			"credentials/server.key",
