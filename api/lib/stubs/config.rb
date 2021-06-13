@@ -7,9 +7,9 @@ module Stubs
     def create_stub(stub)
       case ENV['RAILS_ENV']
       when "production"
-        stub.new(GRPC_HOSTNAME, GRPC::Core::ChannelCredentials.new())
+        stub.new(GRPC_HOSTNAME, GRPC::Core::ChannelCredentials.new)
       else
-        stub.new("piyo.mynote.world:50051", GRPC::Core::ChannelCredentials.new())
+        stub.new("piyo.mynote.world:50051", GRPC::Core::ChannelCredentials.new)
         stub.new(GRPC_HOSTNAME, :this_channel_is_insecure)
       end
     end

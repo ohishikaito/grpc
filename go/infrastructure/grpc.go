@@ -19,6 +19,7 @@ func NewGrpcServer() *grpc.Server {
 	}
 
 	// prodとdevの違いはcredsがあるかどうか
+	// 同じコードで冗長になってるから、何とか良い感じに共通化したい！
 	switch os.Getenv("environment") {
 	case "production":
 		// NOTE: client側はcrtファイルいらないけど、server側はTLS化する必要あり
