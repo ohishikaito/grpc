@@ -13,6 +13,12 @@ import (
 )
 
 func NewGrpcServer() *grpc.Server {
+	zapLogger, err := zap.NewProduction()
+	if err != nil {
+		panic(err)
+	}
+
+	// prodとdevの違いはcredsがあるかどうか
 	switch os.Getenv("environment") {
 	case "production":
 		// NOTE: client側はcrtファイルいらないけど、server側はTLS化する必要あり
@@ -23,16 +29,18 @@ func NewGrpcServer() *grpc.Server {
 		if err != nil {
 			log.Fatalf("failed to load certificate: %v", err)
 		}
-		return grpc.NewServer(grpc.Creds(creds))
+		return grpc.NewServer(
+			grpc.Creds(creds),
+			grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
+				grpc_zap.StreamServerInterceptor(zapLogger),
+				grpc_recovery.StreamServerInterceptor(),
+			)),
+			grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+				grpc_zap.UnaryServerInterceptor(zapLogger),
+				grpc_recovery.UnaryServerInterceptor(),
+			)),
+		)
 	default:
-		// middlewareに切り出して、良い感じにできないかなあ。本番とDRYにしたい。
-		// ➡️optionsのmiddlewareを第1引数、options...を可変長引数で渡す➡️ローカルで起動できるかdebug
-		// ➡️引数1個しか渡せん！
-		zapLogger, err := zap.NewProduction()
-		if err != nil {
-			panic(err)
-		}
-
 		return grpc.NewServer(
 			grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 				grpc_zap.StreamServerInterceptor(zapLogger),
