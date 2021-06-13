@@ -10,6 +10,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/reflection"
 )
 
 func NewGrpcServer() *grpc.Server {
@@ -18,8 +19,6 @@ func NewGrpcServer() *grpc.Server {
 		panic(err)
 	}
 
-	// prodとdevの違いはcredsがあるかどうか
-	// 同じコードで冗長になってるから、何とか良い感じに共通化したい！
 	switch os.Getenv("environment") {
 	case "production":
 		// NOTE: client側はcrtファイルいらないけど、server側はTLS化する必要あり
@@ -42,7 +41,7 @@ func NewGrpcServer() *grpc.Server {
 			)),
 		)
 	default:
-		return grpc.NewServer(
+		grpcServer := grpc.NewServer(
 			grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 				grpc_zap.StreamServerInterceptor(zapLogger),
 				grpc_recovery.StreamServerInterceptor(),
@@ -52,5 +51,7 @@ func NewGrpcServer() *grpc.Server {
 				grpc_recovery.UnaryServerInterceptor(),
 			)),
 		)
+		reflection.Register(grpcServer)
+		return grpcServer
 	}
 }

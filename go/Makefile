@@ -7,3 +7,9 @@ push:
 build-run:
 	docker build -t grpc-go -f ./docker/Dockerfile  .
 	docker run grpc-go
+
+curl:
+	grpcurl -plaintext localhost:50051  pb.UserService/GetUsers
+
+curl2:
+	grpcurl -plaintext -d '{"id": 10 }' localhost:50051  pb.UserService/GetUser
