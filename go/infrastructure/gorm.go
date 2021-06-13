@@ -1,6 +1,7 @@
 package infrastructure
 
 import (
+	"io"
 	"log"
 	"os"
 
@@ -23,13 +24,19 @@ func NewGormConnect() *gorm.DB {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	file, err := os.OpenFile("sql_log_file", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+
+	// ログファイルを開く。CREATE=作成 WRONLYで読み書き APPENDで後ろに追加
+	logfile, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		panic(err.Error())
 	}
-	// logにファイルを出力するようにする
-	log.SetOutput(file)
+	// SetOutPutで出力先を指定 MultiWriterで2つの出力先を指定できる
+	log.SetOutput(io.MultiWriter(logfile, os.Stdout))
+	// LogMode true でログを吐き出すように
 	db.LogMode(true)
-	db.SetLogger(log.New(file, "", 0))
+	// 指定したログファイルに出力
+	db.SetLogger(log.New(logfile, "", 0))
+	// 標準出力で出力するように
+	db.SetLogger(log.New(os.Stdout, "", 0))
 	return db
 }
