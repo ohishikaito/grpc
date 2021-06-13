@@ -20,6 +20,7 @@ pb-gen:
 	docker-compose restart app
 
 push:
+	aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 504300096460.dkr.ecr.ap-northeast-1.amazonaws.com
 	docker build -t grpc-rails -f ./docker/api/Dockerfile . && \
 	docker tag grpc-rails:latest 504300096460.dkr.ecr.ap-northeast-1.amazonaws.com/grpc-rails:latest && \
 	docker push 504300096460.dkr.ecr.ap-northeast-1.amazonaws.com/grpc-rails:latest

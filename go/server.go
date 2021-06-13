@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"grpc/infrastructure"
 	"grpc/infrastructure/repository"
 	"grpc/interface/controller"
@@ -27,8 +26,8 @@ func main() {
 		log.Fatalf("failed to listen: %v\n", err)
 		return
 	}
-	fmt.Println("grpcServer serve")
+	log.Println("grpcServer serve")
 	if err := grpcServer.Serve(listener); err != nil {
-		fmt.Println("serve err", err)
+		log.Fatal("serve err", err)
 	}
 }

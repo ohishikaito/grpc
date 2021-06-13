@@ -32,11 +32,11 @@ func NewGormConnect() *gorm.DB {
 	}
 	// SetOutPutで出力先を指定 MultiWriterで2つの出力先を指定できる
 	log.SetOutput(io.MultiWriter(logfile, os.Stdout))
+	// ログを吐いた時間を出す
+	log.SetFlags(log.Ldate | log.Ltime)
 	// LogMode true でログを吐き出すように
 	db.LogMode(true)
-	// 指定したログファイルに出力
-	db.SetLogger(log.New(logfile, "", 0))
-	// 標準出力で出力するように
+	// 標準出力で出力するように。SetLogger先は一つしか選べないっぽい
 	db.SetLogger(log.New(os.Stdout, "", 0))
 	return db
 }
