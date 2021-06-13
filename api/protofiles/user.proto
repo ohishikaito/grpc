@@ -8,14 +8,16 @@ import "google/protobuf/empty.proto";
 option go_package = "./user";
 
 service UserService {
-  rpc GetUsers(GetUsersReq) returns (Users) {}
+  rpc GetUsers(google.protobuf.Empty) returns (GetUsersResponse) {}
   rpc GetUser(GetUserReq) returns (User) {}
   rpc CreateUser(CreateUserReq) returns (User) {}
   rpc UpdateUser(UpdateUserReq) returns (User) {}
   rpc DestroyUser(DestroyUserReq) returns (google.protobuf.Empty) {}
 }
 
-message GetUsersReq {}
+message GetUsersResponse {
+  repeated User users = 1;
+}
 
 message GetUserReq {
   uint64 id = 1;
@@ -42,8 +44,4 @@ message User {
   string first_name = 3;
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
-}
-
-message Users {
-  repeated User users = 1;
 }

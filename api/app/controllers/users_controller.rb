@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    req = Pb::GetUsersReq.new
+    req = Google::Protobuf::Empty.new
     users = Stubs::UserStub::Stub.get_users(req)
     render json: users, status: :ok
   end

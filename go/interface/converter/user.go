@@ -5,13 +5,13 @@ import (
 	pb "grpc/pb/user"
 )
 
-func ConvertUsers(users []*domain.User) (*pb.Users, error) {
+func ConvertUsers(users []*domain.User) (*pb.GetUsersResponse, error) {
 	var pbUsers []*pb.User
 	for _, user := range users {
 		pbUser, _ := ConvertUser(user)
 		pbUsers = append(pbUsers, pbUser)
 	}
-	return &pb.Users{Users: pbUsers}, nil
+	return &pb.GetUsersResponse{Users: pbUsers}, nil
 }
 
 func ConvertUser(user *domain.User) (*pb.User, error) {

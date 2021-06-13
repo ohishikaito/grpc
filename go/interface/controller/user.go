@@ -20,7 +20,7 @@ func NewUserController(uu usecase.UserUsecase) *userController {
 	}
 }
 
-func (c *userController) GetUsers(ctx context.Context, req *pb.GetUsersReq) (*pb.Users, error) {
+func (c *userController) GetUsers(ctx context.Context, req *emptypb.Empty) (*pb.GetUsersResponse, error) {
 	users, err := c.userUsecase.GetUsers()
 	if err != nil {
 		return nil, err
