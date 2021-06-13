@@ -16,7 +16,6 @@ module Stubs
   end
 end
 
-# GoのDebugger
 require 'grpc'
 
 module GrpcLogger
@@ -25,7 +24,6 @@ module GrpcLogger
   end
   LOGGER = Logger.new(STDOUT)
   LOGGER.level = :debug
-
 end
 
 module GRPC

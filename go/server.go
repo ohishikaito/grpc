@@ -26,7 +26,7 @@ func main() {
 		log.Fatalf("failed to listen: %v\n", err)
 		return
 	}
-	log.Println("grpcServer serve")
+	log.Print("grpcServer serve")
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatal("serve err", err)
 	}
