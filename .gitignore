@@ -2,3 +2,5 @@
 go/tmp
 go/logfile.log
 go/.env
+
+front/node_modules
