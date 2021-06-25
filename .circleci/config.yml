@@ -5,7 +5,7 @@ orbs:
   aws-ecs: circleci/aws-ecs@2.1.0
 
 workflows:
-  workflow:
+  build-and-push-image:
     jobs:
       - aws-ecr/build-and-push-image:
           filters:
@@ -13,11 +13,11 @@ workflows:
               only: master
           name: push-api-image
           account-url: AWS_ECR_ACCOUNT_URL
-          region: ap-northeast-1
+          region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           dockerfile: ./go/docker/api/Dockerfile
-          repo: grpc-go
+          repo: 'grpc-go'
           tag: "${CIRCLE_SHA1}"
 
       - aws-ecs/deploy-service-update:
@@ -30,7 +30,7 @@ workflows:
           family: 'grpc-go-task'
           cluster-name: 'grpc'
           service-name: 'grpc-server222'
-          container-image-name-updates: "container=api,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=grpc-go,tag=${CIRCLE_SHA1}"
 
       # - approval:
       #     requires:
