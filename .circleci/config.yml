@@ -21,6 +21,14 @@ workflows:
           repo: 'grpc-go'
           tag: "${CIRCLE_SHA1}"
 
+      - approval:
+          requires:
+            - push-api-image
+          filters:
+              branches:
+                only: master
+          type: approval
+
       - aws-ecs/deploy-service-update:
           name: deploy-api
           requires:
@@ -32,12 +40,3 @@ workflows:
           cluster-name: 'grpc'
           service-name: 'grpc-server222'
           container-image-name-updates: "container=grpc-go,tag=${CIRCLE_SHA1}"
-
-      # - approval:
-      #     requires:
-      #       - push-api-image
-      #     filters:
-      #         branches:
-      #           only: master
-      #     type: approval
-#
