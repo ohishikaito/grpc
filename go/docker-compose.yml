@@ -11,6 +11,7 @@ services:
       - "50051:50051"
     environment:
       - GRPC_SERVICE_PORT=50051
+      - environment=development
 
 networks:
   default:
