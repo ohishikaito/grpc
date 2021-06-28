@@ -23,19 +23,19 @@ workflows:
           repo: 'grpc-go'
           tag: "${CIRCLE_SHA1}"
 
-      - approval:
-          requires:
-            - push-go-image
-          filters:
-              branches:
-                only: master
-          type: approval
+      # - approval:
+      #     requires:
+      #       - push-go-image
+      #     filters:
+      #         branches:
+      #           only: master
+      #     type: approval
 
       - aws-ecs/deploy-service-update:
           name: deploy-api
           requires:
             - push-go-image
-            - approval
+            # - approval
           filters:
               branches:
                 only: master
