@@ -34,7 +34,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           name: deploy-api
           requires:
-            - push-api-image
+            - push-go-image
             - approval
           filters:
               branches:
