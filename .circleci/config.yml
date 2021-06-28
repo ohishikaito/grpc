@@ -7,11 +7,13 @@ orbs:
 workflows:
   build-and-push-image:
     jobs:
+
+      # push go image
       - aws-ecr/build-and-push-image:
           filters:
             branches:
               only: master
-          name: push-api-image
+          name: push-go-image
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
@@ -23,7 +25,7 @@ workflows:
 
       - approval:
           requires:
-            - push-api-image
+            - push-go-image
           filters:
               branches:
                 only: master
@@ -33,6 +35,7 @@ workflows:
           name: deploy-api
           requires:
             - push-api-image
+            - approval
           filters:
               branches:
                 only: master
