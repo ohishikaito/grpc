@@ -1,4 +1,4 @@
-# Zeitwerkをオンにする場合、設定する必要あり
+# NOTE: Zeitwerkがファイル名 **_pb.rb を読み込めるようにする
 
 class WithProtocolBufferInflector < Zeitwerk::Inflector
   def camelize(basename, abspath)

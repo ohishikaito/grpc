@@ -16,8 +16,37 @@ class UsersController < ApplicationController
 
   def show
     req = Pb::GetUserReq.new({id: params[:id].to_i})
-    user = Stubs::UserStub::Stub.get_user(req)
-    render json: user, status: :ok
+    pb_instance = Stubs::UserStub::Stub.get_user(req)
+    # 手動でモデル作るっていう手段もできるけど、くそめんどいからやりたくない
+    # hoge = converter(pb_instance)
+
+    god_user = initialize_of_model(User, pb_instance) do |instance_hash|
+      instance_hash[:order_date] = convert_epoc_time_to_time_class(pb_instance.order_date.seconds)
+    end
+    render json: god_user, status: :ok
+  end
+
+  def initialize_of_model(model, pb_instance, &block)
+    instance_hash = pb_instance.to_h
+    instance_hash[:created_at] = convert_epoc_time_to_time_class(pb_instance.created_at.seconds)
+    instance_hash[:updated_at] = convert_epoc_time_to_time_class(pb_instance.updated_at.seconds)
+    yield(instance_hash) if block_given?
+    model.new(instance_hash)
+  end
+
+  def convert_epoc_time_to_time_class(epoc_time)
+    Time.at(epoc_time).in_time_zone('Tokyo')
+  end
+
+  def converter(pb_user)
+    User.new({
+      id: pb_user.id,
+      last_name: pb_user.last_name,
+      first_name: pb_user.first_name,
+      epoc_created_at: pb_user.created_at.seconds,
+      # updated_at: pb_user.updated_at,
+      liked: true
+    })
   end
 
   def update

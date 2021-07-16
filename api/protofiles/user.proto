@@ -44,4 +44,7 @@ message User {
   string first_name = 3;
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
+  bool liked = 6;
+  google.protobuf.Timestamp bazirisuku_time = 7;
+  google.protobuf.Timestamp order_date = 8;
 }
